@@ -15,14 +15,23 @@ To do the app version -->
 
 <!DOCTYPE html>
 <html>
-
+<!-- overall structure:
+    1. main
+        - navbar
+        - header
+        - add new task
+        - Calendar(optional)
+        - main table
+    2. footer
+     -->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>seifx01-project0</title>
+    <!-- link bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+    <!-- link fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet" type="text/css" />
@@ -30,25 +39,20 @@ To do the app version -->
 
 <body>
     <script src="script.js"></script>
+   
     <main>
-        <nav class="navbar navbar-expand-lg">
+        <!-- navbar block -->
+        <!-- create a fixed-top position nav bar    -->
+        <nav class="navbar navbar-expand-sm fixed-top">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
                 aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
-            
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Work</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Personal Life</a>
-                    </li>
+                    <li class="nav-item active"><a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Work</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Personal Life</a></li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -56,101 +60,72 @@ To do the app version -->
                 </form>
             </div>
         </nav>
+<!-- -------------------------------------------------- -->
+        <!-- header block -->
         <header>
-                <h1>My To Do List</h1>
+                <h1>My <span id="styling-header">To Do</span> List</h1>
                 <hr>
         </header>
-        <p></p>
         <br>
+<!-- -------------------------------------------------- -->
+        <!-- add new task block -->
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-6">
-                   
-                    <button id="myBtn">Add a new task</button>
-        
+                    <!-- add new task button, with fontawesome icon and title -->
+                    <button id="addNew" title="key in task information"><i class="fas fa-plus"></i>Add a new task</i></button>
+                    <!-- after click the add new button, pop up a new window to fill up the task information -->
                     <div id="myTask" class="task">
-                        <div class="task-content">
-                            <span class="close">&times;</span>
+                        <div class="newTaskForm">
+                            <!-- close the pop up window -->
+                            <span class="close">&times;</span> 
                             <form id="form">
-                                <p>Task details</p>
-                                <div>
-                                    <input type="text" placeholder="Task Content">
-                                    
-                                </div>
-                                <div>
-                                    <input type="text" placeholder="Task Category">
-                                    
-                                </div>
-                                <div>
-                                    <label for="inputState">Start Date</label>
-                                    <br>
-                                    <input type="date" name="">
-                                </div>
-                                <div>
-                                    <label for="inputState">End Date</label>
-                                    <br>
-                                    <input type="date" name="">
-                                </div>
-                                <div>
-                                    <label for="inputState">Priority</label>
-                                    <select id="inputState" class="form-control">
-                                        <option selected>Choose...</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                
-                            </form>
-                            
+                                <p>Task Details</p>
+                                <div>Task Content<input type="text" placeholder="Task Content"></div>
+                                <div>Task Category<input type="text" placeholder="Task Category"></div>
+                                <div>Start Date<input type="date" name=""></div>
+                                <div>End Date<input type="date" name=""></div>
+                                <div>Priority<select id="inputState" class="form-control col-sm-6">
+                                                <option selected>Choose...</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option></select></div>
+                                <button type="submit" class="btn btn-primary">Submit</button>   
+                            </form>  
                         </div>
-                    <p></p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-12">
+<!-- -------------------------------------------------- -->
+        <!-- <div class="col-12">
             <h2>Calendar</h2>
             <img src="">
-        </div>
-
-         <div class="table-responsive">
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Category</th>
-          <th>Priority</th>
-          <th>Start Date</th>
-          <th>Due Date</th>
-          <th>Task Content</th>
-          <th>Progress</th>
-          <th>Update</th>
-          <th>Feedback</th>
-          <th>Complete/No</th>
-          <th>Update</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Anna</td>
-          <td>Pitt</td>
-          <td>35</td>
-          <td>New York</td>
-          <td>USA</td>
-          <td>Female</td>
-          <td>Yes</td>
-          <td>Yes</td>
-          <td>Yes</td>
-          <td><button class="Update-button">Update</button></td>
-          <td><button class="Delete-button">Delete</button></td>
-        </tr>
-        <tr>
-            <td>2</td>
+        </div> -->
+<!-- -------------------------------------------------- -->
+<!-- main table -->
+        <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+            <th>#</th>
+            <th>Category</th>
+            <th>Priority</th>
+            <th>Start Date</th>
+            <th>Due Date</th>
+            <th>Task Content</th>
+            <th>Progress</th>
+            <th>Update</th>
+            <th>Feedback</th>
+            <th>Complete/No</th>
+            <th>Update</th>
+            <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td>1</td>
             <td>Anna</td>
             <td>Pitt</td>
             <td>35</td>
@@ -162,15 +137,16 @@ To do the app version -->
             <td>Yes</td>
             <td><button class="Update-button">Update</button></td>
             <td><button class="Delete-button">Delete</button></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+        </div>
     </main>
     <script src="script.js"></script>
     <br>
-    
+<!-- -------------------------------------------------- -->
+<!-- footer with fontawesome design, also with hover and title -->
     <footer>
         <section class="media">
             <span style="font-size: 36px; color: black;">
@@ -184,6 +160,7 @@ To do the app version -->
             <h5>&copy;2019 GA project0 Chen</h5>
         </section>
     </footer>
+<!-- -------------------------------------------------- -->
 </body>
 
 </html>

@@ -1,52 +1,129 @@
+/* overall structure:
+    1. main
+        - navbar
+        - header
+        - add new task
+        - Calendar(optional)
+        - main table
+    2. footer */
+/* ----------------------------- */
+/* overall */
 body {
     background-color: rgba(0, 255, 255, 0.1);
 }
-
-h1{
-  text-align: center;
-  color: black;
-  font-size: 60px;
-  margin:auto;
-  
-}
-#form, #form p{
-    text-align: center;
-}
-footer {
-
-  border-top: 2px solid;
-}
-.media {
-    display: block;
-    text-align: center;
-}
-p {
-  text-indent: 20px;
-  text-align: justify;
-  line-height: 150%;
-}
-
-li {
-  display: inline-block;
-  padding: 10px;
-}
-
+/* ----------------------------- */
+/* nav bar */
 nav {
   text-align: center;
   background-color: rgb(72, 15, 226);
   color: white;
   margin: auto;
 }
+li {
+  display: inline-block;
+  padding: 10px;
+}
 li a:hover {
     background-color: yellow;
 }
-
 a {
   color: white;
   text-decoration: none;
 }
 a:hover {
   background-color: gray;
+}
+#search {
+    float: left;
+    margin-left: -15px;
+}
+/* ----------------------------- */
+/* header */
+#styling-header {
+  color: rgb(247, 161, 1);
+}
+h1{
+  text-align: center;
+  color: black;
+  font-size: 60px;
+  margin-top: 150px;
+}
+/* ----------------------------- */
+/* add new task */
+/* The pop up window */
+.fas {
+  color: rgb(27, 226, 9);
+}
+.task {
+  display: none; /* default don't display, only display when click the add button */
+  position: fixed; 
+  z-index: 1; /* keep the pop up window on top layer */
+  padding-top: 100px; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.2); 
+}
+/* pop up window and select bar*/
+.newTaskForm, select {
+  background-color: white;
+  margin: auto;
+  padding: 20px;
+  border: 2px solid rgb(236, 98, 5);
+  width: 70%;
+}
+#form, #form p{
+    text-align: center;
+}
+div input {
+  margin-left: 30px;
+}
+form p {
+  font-size: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+form div {
+  padding: 20px;
+  position: relative;
+}
+/* close icon css */
+.close {
+  color: lightgrey;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover,.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* ----------------------------- */
+/* calendar */
+/* .col-12 {
+    display: block;
+    text-align: right;
+} */
+/* ----------------------------- */
+/* main table */
+.Update-button:hover {
+    background-color: gray;
+}
+.Delete-button:hover {
+    background-color: gray;
+}
+
+
+/* ----------------------------- */
+/* footer css */
+footer {
+  border-top: 2px solid;
+}
+.media {
+    display: block;
+    text-align: center;
 }
 .facebook:hover {
   background-color: rgb(44, 103, 241);
@@ -68,57 +145,4 @@ a:hover {
     text-align: right;
     color: black;
 }
-#search {
-    float: left;
-    margin-left: -15px;
-}
-.col-12 {
-    display: block;
-    text-align: right;
-}
-.Update-button:hover {
-    background-color: gray;
-}
-.Delete-button:hover {
-    background-color: gray;
-}
-
-
-
-
-
-.task {
-  display: none; 
-  position: fixed; 
-  z-index: 1; 
-  padding-top: 100px; 
-  left: 0;
-  top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgb(0,0,0); 
-  background-color: rgba(0,0,0,0.4); 
-}
-
-.task-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
-
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
+/* ----------------------------- */
