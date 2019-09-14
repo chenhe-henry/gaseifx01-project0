@@ -1,33 +1,13 @@
-// add new todo function
-// document.write(Date());
-
-// const todoList = function() {
-//     var item = document.getElementById("todoInput").value;
-//     var text = document.createTextNode(item);
-//     var newItem = document.createElement("li");
-//     newItem.appendChild(text);
-//     document.getElementById("List").appendChild(newItem);
-// }
-// let id = 0
 $(document).ready(function () {
   //add new task 
-  $("#form").submit(function (event) {
-
+  $("#dataEnterForm").submit(function (event) {
+    // get all values that entered
     var contentValue = $("#taskContentInput").val();
-    // $("#newTaskContent").html(`${contentValue}`);
-
     var categoryValue = $("#taskCategoryInput").val();
-    // $("#newTaskCategory").html(`${categoryValue}`);
-
     var startDateValue = $("#taskStartDateInput").val();
-    // $("#newTaskStartDate").html(` ${startDateValue}`);
-
     var dueDateValue = $("#taskDueDateInput").val();
-    // $("#newTaskDueDate").html(`${dueDateValue}`);
-
     var prioirtyValue = $("#taskPriorityInput").val();
-    // $("#newTaskPriority").html(`${prioirtyValue}`);
-
+    // create a new row everytime when add a new task, with basic details, a checkbox, a update button and a delete button
     let $row = $("<tr>").append(`
             <td>${contentValue}</td>
             <td>${categoryValue}</td>
@@ -38,69 +18,44 @@ $(document).ready(function () {
             <td><button class="btn btn-primary">Update</button></td>
             <td><button class="delete btn btn-primary">Delete</button></td>
         `)
-    if (dueDateValue === '') {
-      alert(`Good, you need to ${contentValue} now!`);
-    } else {
-      alert(`Good, you need to ${contentValue} now\nRemember to finish that before ${dueDateValue}!`);
-    };
-    // if (contentValue === '') {
-    //     alert("You must write something!");
-    // }
-
-    $('#myTable').append($row)
-
-    // var deleteButton =<button>&times;</button>;
-    // $("ul").eq(0).append(value)
+    // the task content cannot be empty, or it will show a alert
+    if (contentValue !== '') {
+      $('#myTable').append($row)
+    } else { 
+        alert("You must write something!");
+    }
     event.preventDefault();
   });
-  //alert when add a new task
-  // $("#submitNewTask").click(function () {
-  //     alert(`Good, you got something need to do now\nRemember to finish that before the due day!`);
-  //     // $("#completeCheck").append('<li><button id="checkBox">Checkbox</button></li>');
-  //     // $("#updateButton").append('<li><button class="btn btn-primary">Update</button></li>');
-  //     // $("#deleteButton").append('<li><button class="btn btn-primary">Delelte</button></li>');
-  // });
+  //end of #dataEnterForm JQuery
+  
+  //the delete button function, every time delete the current row
   $("#myTable").on('click', '.delete', function () {
     var readyToDelete = confirm(`Do you want to delete this task?`);
     if (readyToDelete === true) {
       $(this).closest('tr').remove();
     }
-
   });
+  //end of delete button JQuery
+
+  //checkbox function, when ticked, the whole row will be line-through
   $(document).on('click', 'input[type="checkbox"]', function () {
     if ($(this).prop("checked") == true) {
       $(this).closest("tr").css("text-decoration", "line-through");
-    }
-    else if ($(this).prop("checked") == false) {
+    } else if ($(this).prop("checked") == false) {
       $(this).closest("tr").css("text-decoration", "none");
     }
   });
+  //end of checkbox JQuery
 
-
-  // $("button").click(function () {
-  //     $("#div1").remove();
-  // });
-  // $("#checkBox").click(function () {
-  //     $("h1").css("background-color", "red");
-  // })
-  //search function 
+  //search function, it will search and keep the whole row includes the result display on the screen, 
+  // and won't do anything if there is no key words entered
   $("#searchMyInput").on("keyup", function () {
     var value = $(this).val().toLowerCase();
     $("#myTable tr").filter(function () {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
     event.preventDefault();
-  });
+  }); 
+  //end of search JQuery
+}); 
 
-  // $('.delete').on('click', function(){
-  //     console.log('hello')
-  //     $(this).closest('tr').remove(); 
-  // })  
-}); //document.ready
-
-
-
-
-
-// todoList();
-// Add products to <table>

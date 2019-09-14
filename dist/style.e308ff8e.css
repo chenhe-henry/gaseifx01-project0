@@ -5,6 +5,7 @@ body {
     height: 100%;
     background-color: rgba(0, 255, 255, 0.1);
 }
+
 /* nav bar */
 nav {
   text-align: center;
@@ -13,20 +14,12 @@ nav {
   margin: auto;
   height: 10%;
 }
-.dateSelect, .dataEnter {
-    display: inline;
-}
-.prioritySelect {
-    margin: 250px;
-}
-li {
-  /* display: inline-block; */
-  padding: 10px;
-  /* list-style-type: none; */
-  /* display: none; */  
-}
 li a:hover {
     background-color: yellow;
+}
+/* dataEnterForm the todo list */
+.dateSelect, .dataEnter {
+    display: inline;
 }
 
 a {
@@ -36,21 +29,17 @@ a {
 a:hover {
   background-color: gray;
 }
-#search {
-    float: left;
-    margin-left: -15px;
-}
 /* ----------------------------- */
 /* main */
 main {
     margin-top: 12%;
 }
-
+form {
+  margin: 5px;
+}
 #form div{
-    /* margin: 2%; */
     padding: 5px;
 }
-
 #prioritySelect {
     margin: auto;
     width: 70%;
@@ -58,57 +47,14 @@ main {
 }
 /* ------------------------------ */
 /* modal */
-.modal-body div{
+/* .modal-body div{
     margin: auto;
     padding: 10px;
     text-align: center;
-}
-
-
+} */
 /* --------------------------- */
-section {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-.input_div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-.input_div .input {
-    padding: 0.5rem 1rem;
-    height: 50px;
-    outline: none;
-    background-color: #fff;
-    width: 450px;
-    font-size: 1.15rem;
-    margin: 0.25rem;
-    border-radius: 25px;
-}
-.addButton {
-    height: 50px;
-    width: 50px;
-    border-radius: 25px;
-    outline: none;
-    border: none;
-    color: #000;
-    background-color: lime;
-    cursor: pointer;
-}
-.addButton:hover {
-    opacity: 0.7;
-}
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin-top: 2rem;
-}
 
+/* footer */
 footer {
   border-top: 2px solid;
 }

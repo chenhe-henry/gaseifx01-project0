@@ -1,29 +1,15 @@
-<!-- End of this Sunday: webvision
-basic structure and framework, including the bootstrap and fontawesome features
-
-End of next Tuesday: webvision
-Get the basic function work, e.g.add new,
-
-End of next Thursday: webvision
-get an seperate window for adding new task if it is possible, and let the todo can relisted by priority.
-
-End of next Sunday: webvision
-link the calender and current todo list
-
-End of next Tuesday:
-To do the app version -->
-
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
+    <!-- web browser title -->
     <title>My To Do List</title>
     <!-- link bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- link fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <!-- link JQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -33,7 +19,7 @@ To do the app version -->
 
 <body>
     <script src="/script.75da7f30.js"></script>
-    <!-- navbar block -->
+    <!-- navbar & search block -->
     <!-- create a fixed-top position nav bar    -->
     <nav class="navbar navbar-expand-sm fixed-top">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,43 +33,32 @@ To do the app version -->
                 <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-book-open"></i>Study</a></li>
                 <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-user-friends"></i>Life</a></li>
             </ul>
-            <!-- <form class="form-inline my-2 my-lg-0"> -->
-            <i class="fas fa-search"></i>
-            <input id="searchMyInput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
-            <!--</form>-->
+            <!-- search -->
+        <i class="fas fa-search"></i>
+        <input id="searchMyInput" class="form-control mr-sm-2" type="search" placeholder="Enter some keywords to search..." aria-label="Search">
         </div>
     </nav>
+    <!-- main block includes the add new function and the todo list tables -->
     <main>
         <h1>My <span style="color: rgb(231, 139, 18)">To Do </span>List</h1>
-
         <!-- want to add some modals, but not ready yet -->
         <!-- Button to Open the Modal -->
-        <button type="button" onclick="todoList()" class="btn btn-primary" data-toggle="modal" data-target="#myModalOne">
+        <!-- <button type="button" onclick="todoList()" class="btn btn-primary" data-toggle="modal"
+            data-target="#myModalOne">
             Add new task
         </button>
-        <button type="button" onclick="todoList()" class="btn btn-primary" data-toggle="modal" data-target="#myModalTwo">
+        <button type="button" onclick="todoList()" class="btn btn-primary" data-toggle="modal"
+            data-target="#myModalTwo">
             Calendar
-        </button>
-        <hr>
-        <!-- <form id="todoForm">
-        <input id="todoInput">
-        <button type="button" class="btn btn-primary" onclick="todoList()">Add New Task</button>
-    </form>
-    <ol id="todoList">
-    </ol> -->
-    </main>
-    <form id="form">
-        <div class="dataEnter">Task Content<input id="taskContentInput" type="text" placeholder="Task Content"></div>
-        <div class="dataEnter">Category<input id="taskCategoryInput" type="text" placeholder="Task Category"></div>
-        <!-- <input id="taskStartDateInput" type="text" placeholder="Task Start Date">
-            <input id="taskDueDateInput" type="text" placeholder="Task Due Date"> -->
-        <br>
-        <div class="dateSelect">Start Date<input id="taskStartDateInput" type="date" name=""></div>
-        <div class="dateSelect">End Date<input id="taskDueDateInput" type="date" name=""></div>
-        <!-- <input id="taskPriorityInput" type="text" placeholder="Task Priority"> -->
-
-        <div id="prioritySelect">Priority (1->5, max->min)<select id="taskPriorityInput" class="form-control col-sm-6" title="choose the priority">
+        </button> -->
+    <hr>
+    <!-- entery task details and add them into the todo list table -->
+    <form id="dataEnterForm">
+        <div class="dataEnter mr-sm-6">Task Content<input id="taskContentInput" type="text" placeholder="Task Content"></div>
+        <div class="dataEnter mr-sm-6">Category<input id="taskCategoryInput" type="text" placeholder="Task Category"></div>
+        <div class="dateSelect mr-sm-6">Start Date<input id="taskStartDateInput" type="date" name=""></div>
+        <div class="dateSelect mr-sm-6">End Date<input id="taskDueDateInput" type="date" name=""></div>
+        <div id="prioritySelect">Priority (1->5, max->min)<select id="taskPriorityInput" class="form col-sm-6" title="choose the priority">
                 <option selected="">Choose...</option>
                 <option>1</option>
                 <option>2</option>
@@ -91,13 +66,14 @@ To do the app version -->
                 <option>4</option>
                 <option>5</option>
             </select></div>
-        <input type="submit" id="submitNewTask" value="Add New Task">
+        <input class="btn btn-primary" type="submit" id="submitNewTask" value="Add New Task">
     </form>
+
+    <!-- the todo list table, only with th, and will append tr when key in some information-->
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
-                    <!-- <th>#</th> -->
                     <th>Task Content</th>
                     <th>Category</th>
                     <th>Start Date</th>
@@ -110,24 +86,11 @@ To do the app version -->
             </thead>
             <tbody id="myTable">
                 <tr id="todoList">
-                    <!-- <td></td>
-                    <td class="newTaskContent"></td>
-                    <td class="newTaskCategory"></td>
-                    <td class="newTaskStartDate"></td>
-                    <td class="newTaskDueDate"></td>
-                    <td class="newTaskPriority"></td>
-                    <td class="completeCheck"></td>
-                    <td class="updateButton"></td>
-                    <td class="deleteButton"></td> -->
                 </tr>
             </tbody>
         </table>
     </div>
-
-
-
-
-
+    </main>
 
     <!-- The Modal One -->
     <div class="modal" id="myModalOne">
@@ -181,15 +144,16 @@ To do the app version -->
             </div>
         </div>
     </div>
+    
     <!-- <input type="button" value="Hide text" onclick="document.getElementsById('form').style.visibility='hidden'">
 <input type="button" value="Show text" onclick="document.getElementsById('form').style.visibility='visible'"> -->
 </body>
 <hr>
 <hr>
+<!-- footer -->
 <footer>
     <section class="copyright">
         <h5>&copy;2019 GA project0 Chen</h5>
     </section>
 </footer>
-
 </html>
