@@ -1,31 +1,34 @@
-/* overall structure:
-    1. main
-        - navbar
-        - header
-        - add new task
-        - Calendar(optional)
-        - main table
-    2. footer */
-/* ----------------------------- */
-/* overall */
+/* keep the todo list in center */
+
 body {
+    text-align: center;
+    height: 100%;
     background-color: rgba(0, 255, 255, 0.1);
 }
-/* ----------------------------- */
 /* nav bar */
 nav {
   text-align: center;
   background-color: rgb(72, 15, 226);
   color: white;
   margin: auto;
+  height: 10%;
+}
+.dateSelect, .dataEnter {
+    display: inline;
+}
+.prioritySelect {
+    margin: 250px;
 }
 li {
-  display: inline-block;
+  /* display: inline-block; */
   padding: 10px;
+  /* list-style-type: none; */
+  /* display: none; */  
 }
 li a:hover {
     background-color: yellow;
 }
+
 a {
   color: white;
   text-decoration: none;
@@ -38,113 +41,80 @@ a:hover {
     margin-left: -15px;
 }
 /* ----------------------------- */
-/* header */
-#styling-header {
-  color: rgb(247, 161, 1);
+/* main */
+main {
+    margin-top: 12%;
 }
-h1{
-  text-align: center;
-  color: black;
-  font-size: 60px;
-  margin-top: 150px;
+
+#form div{
+    /* margin: 2%; */
+    padding: 5px;
 }
-/* ----------------------------- */
-/* add new task */
-/* The pop up window */
-.fas {
-  color: rgb(27, 226, 9);
+
+#prioritySelect {
+    margin: auto;
+    width: 70%;
+    padding: 5px;
 }
-.task {
-  display: none; /* default don't display, only display when click the add button */
-  position: fixed; 
-  z-index: 1; /* keep the pop up window on top layer */
-  padding-top: 100px; 
-  left: 0;
-  top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgba(0,0,0,0.2); 
-}
-/* pop up window and select bar*/
-.newTaskForm, select {
-  background-color: white;
-  margin: auto;
-  padding: 20px;
-  border: 2px solid rgb(236, 98, 5);
-  width: 70%;
-}
-#form, #form p{
+/* ------------------------------ */
+/* modal */
+.modal-body div{
+    margin: auto;
+    padding: 10px;
     text-align: center;
 }
-div input {
-  margin-left: 30px;
-}
-form p {
-  font-size: 40px;
-  font-family: Arial, Helvetica, sans-serif;
-}
-form div {
-  padding: 20px;
-  position: relative;
-}
-/* close icon css */
-.close {
-  color: lightgrey;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-.close:hover,.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-/* ----------------------------- */
-/* calendar */
-/* .col-12 {
-    display: block;
-    text-align: right;
-} */
-/* ----------------------------- */
-/* main table */
-.Update-button:hover {
-    background-color: gray;
-}
-.Delete-button:hover {
-    background-color: gray;
-}
 
 
-/* ----------------------------- */
-/* footer css */
+/* --------------------------- */
+section {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.input_div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.input_div .input {
+    padding: 0.5rem 1rem;
+    height: 50px;
+    outline: none;
+    background-color: #fff;
+    width: 450px;
+    font-size: 1.15rem;
+    margin: 0.25rem;
+    border-radius: 25px;
+}
+.addButton {
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    outline: none;
+    border: none;
+    color: #000;
+    background-color: lime;
+    cursor: pointer;
+}
+.addButton:hover {
+    opacity: 0.7;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 2rem;
+}
+
 footer {
   border-top: 2px solid;
-}
-.media {
-    display: block;
-    text-align: center;
-}
-.facebook:hover {
-  background-color: rgb(44, 103, 241);
-  color: white;
-}
-.twitter:hover {
-  background-color: rgb(63, 202, 218);
-  color: white;
-}
-.youtube:hover {
-  background-color: red;
-  color: white;
-}
-.pinterest:hover {
-  background-color: white;
-  color: red;
 }
 .copyright {
     text-align: right;
     color: black;
 }
-/* ----------------------------- */
 
 /*# sourceMappingURL=/style.e308ff8e.css.map */
