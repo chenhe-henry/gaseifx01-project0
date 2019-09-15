@@ -147,6 +147,9 @@ $(document).ready(function () {
       $(this).closest('tr').remove();
     }
   }); //end of delete button JQuery
+  // $("#dataEnterForm").on('click', '#rating', function () {
+  //     $("#rating i").css("color", "orange");
+  // });
   //checkbox function, when ticked, the whole row will be line-through
 
   $(document).on('click', 'input[type="checkbox"]', function () {
@@ -195,7 +198,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61595" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63078" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

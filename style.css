@@ -17,6 +17,15 @@ nav {
 li a:hover {
     background-color: yellow;
 }
+input[type=search] {
+  width: 25%;
+  font-size: 18px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+input[type=search]:focus {
+  width: 100%;
+}
 /* dataEnterForm the todo list */
 .dateSelect, .dataEnter {
     display: inline;

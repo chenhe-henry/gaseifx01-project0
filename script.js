@@ -37,6 +37,10 @@ $(document).ready(function () {
   });
   //end of delete button JQuery
 
+  // $("#dataEnterForm").on('click', '#rating', function () {
+  //     $("#rating i").css("color", "orange");
+  // });
+
   //checkbox function, when ticked, the whole row will be line-through
   $(document).on('click', 'input[type="checkbox"]', function () {
     if ($(this).prop("checked") == true) {
@@ -55,6 +59,7 @@ $(document).ready(function () {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
     event.preventDefault();
+    
   }); 
   //end of search JQuery
 }); 
