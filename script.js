@@ -53,10 +53,10 @@ $(document).ready(function () {
 
   //there is a star before every task, double click to highlight, and click to back to the background-color
   $(document).on('click', '.important', function () {        
-        $(this).closest("tr").css("background-color", "aliceblue");   
+    $(this).closest("tr").css("background-color", "rgba(255, 255, 255, 0)");   
   });
   $(document).on('dblclick', '.important', function () {
-        $(this).closest("tr").css("background-color", "yellow");
+    $(this).closest("tr").css("background-color", "beige");
   });
 
   //search function, it will search and keep the whole row includes the result display on the screen, 

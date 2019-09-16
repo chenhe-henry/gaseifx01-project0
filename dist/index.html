@@ -26,13 +26,14 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active"><a class="nav-link" href="#"><i class="fas fa-home"></i>Home <span class="sr-only">(current)</span></a>
+            <!-- <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active"><a class="nav-link" href="#"><i class="fas fa-home"></i>Home <span
+                            class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-briefcase"></i>Work</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-book-open"></i>Study</a></li>
+                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-book-open"></i></i>Study</a></li>
                 <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-user-friends"></i>Life</a></li>
-            </ul>
+            </ul> -->
             <!-- search -->
         <i class="fas fa-search"></i>
         <input id="searchMyInput" class="form-control mr-sm-2" type="search" placeholder="Enter some keywords to search..." aria-label="Search">
@@ -51,8 +52,9 @@
             data-target="#myModalTwo">
             Calendar
         </button> -->
-    <hr>
+    
     <!-- entery task details and add them into the todo list table -->
+    <div class="container">
     <form id="dataEnterForm">
         <div class="dataEnter mr-sm-6">Task Content<input id="taskContentInput" type="text" placeholder="Task Content"></div>
         <div class="dataEnter mr-sm-6">Category<input id="taskCategoryInput" type="text" placeholder="Task Category"></div>
@@ -91,6 +93,7 @@
             </tbody>
         </table>
     </div>
+    </div>  
     </main>
 
     <!-- The Modal One -->
@@ -149,12 +152,22 @@
     <!-- <input type="button" value="Hide text" onclick="document.getElementsById('form').style.visibility='hidden'">
 <input type="button" value="Show text" onclick="document.getElementsById('form').style.visibility='visible'"> -->
 </body>
-<hr>
-<hr>
+<br>
 <!-- footer -->
 <footer>
+    <br>
+    <section id="media">
+        <span style="font-size: 36px; color: black;">
+            <span title="facebook"><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></span>
+            <span title="twitter"><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></span>
+            <span title="youtube"><a class="youtube" href="https://www.youtube.com/watch?v=LhIJqQItaAg" target="_blank"><i class="fab fa-youtube"></i></a></span>
+            <span title="linkedin"><a class="linkedin" href="#"><i class="fab fa-linkedin"></i></a></span>
+            <span title="wechat"><a class="wechat" href="#"><i class="fab fa-weixin"></i></a></span>
+
+        </span>
+    </section>
     <section class="copyright">
-        <h5>&copy;2019 GA project0 Chen</h5>
+        <h5>&copy;2019 General Assembly Project0 Chen</h5>
     </section>
 </footer>
 </html>
