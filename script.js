@@ -72,3 +72,5 @@ $(document).ready(function () {
   //end of search JQuery
 }); 
 
+//display current date and time
+setInterval("linkweb.innerHTML=new Date().toLocaleString()+''+''.charAt(new Date().getDay());", 1000);

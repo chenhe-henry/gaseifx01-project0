@@ -176,7 +176,9 @@ $(document).ready(function () {
     });
     event.preventDefault();
   }); //end of search JQuery
-});
+}); //display current date and time
+
+setInterval("linkweb.innerHTML=new Date().toLocaleString()+''+''.charAt(new Date().getDay());", 1000);
 },{}],"../../../../../../usr/local/lib/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
