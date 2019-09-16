@@ -9,7 +9,7 @@ $(document).ready(function () {
     var prioirtyValue = $("#taskPriorityInput").val();
     // create a new row everytime when add a new task, with basic details, a checkbox, a update button and a delete button
     let $row = $("<tr>").append(`
-            <td>${contentValue}</td>
+            <td><i class="important far fa-star"></i>${contentValue}</td>
             <td>${categoryValue}</td>
             <td>${startDateValue}</td>
             <td>${dueDateValue}</td>
@@ -50,6 +50,14 @@ $(document).ready(function () {
     }
   });
   //end of checkbox JQuery
+
+  //there is a star before every task, double click to highlight, and click to back to the background-color
+  $(document).on('click', '.important', function () {        
+        $(this).closest("tr").css("background-color", "aliceblue");   
+  });
+  $(document).on('dblclick', '.important', function () {
+        $(this).closest("tr").css("background-color", "yellow");
+  });
 
   //search function, it will search and keep the whole row includes the result display on the screen, 
   // and won't do anything if there is no key words entered

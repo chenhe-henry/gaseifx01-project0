@@ -128,7 +128,7 @@ $(document).ready(function () {
     var dueDateValue = $("#taskDueDateInput").val();
     var prioirtyValue = $("#taskPriorityInput").val(); // create a new row everytime when add a new task, with basic details, a checkbox, a update button and a delete button
 
-    var $row = $("<tr>").append("\n            <td>".concat(contentValue, "</td>\n            <td>").concat(categoryValue, "</td>\n            <td>").concat(startDateValue, "</td>\n            <td>").concat(dueDateValue, "</td>\n            <td>").concat(prioirtyValue, "</td>\n            <td><input type=\"checkbox\"></button></td>\n            <td><button class=\"btn btn-primary\">Update</button></td>\n            <td><button class=\"delete btn btn-primary\">Delete</button></td>\n        ")); // the task content cannot be empty, or it will show a alert
+    var $row = $("<tr>").append("\n            <td><i class=\"important far fa-star\"></i>".concat(contentValue, "</td>\n            <td>").concat(categoryValue, "</td>\n            <td>").concat(startDateValue, "</td>\n            <td>").concat(dueDateValue, "</td>\n            <td>").concat(prioirtyValue, "</td>\n            <td><input type=\"checkbox\"></button></td>\n            <td><button class=\"btn btn-primary\">Update</button></td>\n            <td><button class=\"delete btn btn-primary\">Delete</button></td>\n        ")); // the task content cannot be empty, or it will show a alert
 
     if (contentValue !== '') {
       $('#myTable').append($row);
@@ -159,7 +159,14 @@ $(document).ready(function () {
       $(this).closest("tr").css("text-decoration", "none");
     }
   }); //end of checkbox JQuery
-  //search function, it will search and keep the whole row includes the result display on the screen, 
+  //there is a star before every task, double click to highlight, and click to back to the background-color
+
+  $(document).on('click', '.important', function () {
+    $(this).closest("tr").css("background-color", "aliceblue");
+  });
+  $(document).on('dblclick', '.important', function () {
+    $(this).closest("tr").css("background-color", "yellow");
+  }); //search function, it will search and keep the whole row includes the result display on the screen, 
   // and won't do anything if there is no key words entered
 
   $("#searchMyInput").on("keyup", function () {
