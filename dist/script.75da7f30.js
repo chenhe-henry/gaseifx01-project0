@@ -122,21 +122,34 @@ $(document).ready(function () {
   //add new task 
   $("#dataEnterForm").submit(function (event) {
     // get all values that entered
-    var contentValue = $("#taskContentInput").val();
-    var categoryValue = $("#taskCategoryInput").val();
-    var startDateValue = $("#taskStartDateInput").val();
-    var dueDateValue = $("#taskDueDateInput").val();
-    var prioirtyValue = $("#taskPriorityInput").val(); // create a new row everytime when add a new task, with basic details, a checkbox, a update button and a delete button
+    var initialContentValue = $("#taskContentInput").val();
+    var initialCategoryValue = $("#taskCategoryInput").val();
+    var initialStartDateValue = $("#taskStartDateInput").val();
+    var initialDueDateValue = $("#taskDueDateInput").val();
+    var initialPrioirtyValue = $("#taskPriorityInput").val(); // create a new row everytime when add a new task, with basic details, a checkbox, a update button and a delete button
 
-    var $row = $("<tr>").append("\n            <td><i class=\"important far fa-star\"></i>".concat(contentValue, "</td>\n            <td>").concat(categoryValue, "</td>\n            <td>").concat(startDateValue, "</td>\n            <td>").concat(dueDateValue, "</td>\n            <td>").concat(prioirtyValue, "</td>\n            <td><input type=\"checkbox\"></button></td>\n            <td><button class=\"btn btn-primary\">Update</button></td>\n            <td><button class=\"delete btn btn-primary\">Delete</button></td>\n        ")); // the task content cannot be empty, or it will show a alert
+    var $row = $("<tr>").append("\n            <td><i class=\"highlight far fa-star\"></i></td>\n            <td><div id=\"initialContentValue\" class=\"dblClickToEditContent\">".concat(initialContentValue, "</div><div id=\"updateContent\"><input type=\"text\"></div></td>\n            <td><div id=\"initialCategoryValue\" class=\"dblClickToEditCategory\">").concat(initialCategoryValue, "</div><div id=\"updateCategory\"><input type=\"text\"></div></td>\n            <td><div id=\"initialStartDateValue\" class=\"dblClickToEditStartDate\">").concat(initialStartDateValue, "</div><div id=\"updateStartDate\"><input type=\"text\"></div></td>\n            <td><div id=\"initialDueDateValue\" class=\"dblClickToEditDueDate\">").concat(initialDueDateValue, "</div><div id=\"updateDueDate\"><input type=\"text\"></div></td>\n            <td><div id=\"initialPrioirtyValue\" class=\"dblClickToEditPriority\">").concat(initialPrioirtyValue, "</div><div id=\"updatePriority\"><input type=\"text\"></div></td>\n            <td><input type=\"checkbox\"></button></td>\n            \n            <td><button class=\"delete btn btn-primary\">Delete</button></td>\n        ")); // < td > <button class="update btn btn-primary">Update</button></td>
+    // the task content cannot be empty, or it will show a alert
 
-    if (contentValue !== '') {
+    if (initialContentValue !== '') {
       $('#myTable').append($row);
     } else {
       alert("You must write something!");
     }
 
-    event.preventDefault();
+    event.preventDefault(); // the input field will be empty after adding new task, so that ready for another task
+
+    $("#taskContentInput").val("");
+    $("#taskCategoryInput").val("");
+    $("#taskStartDateInput").val("");
+    $("#taskDueDateInput").val("");
+    $("#taskPriorityInput").val(""); //hide the update input field
+
+    $("#updateContent input ").hide();
+    $("#updateCategory input ").hide();
+    $("#updateStartDate input ").hide();
+    $("#updateDueDate input ").hide();
+    $("#updatePriority input ").hide();
   }); //end of #dataEnterForm JQuery
   //the delete button function, every time delete the current row
 
@@ -147,7 +160,26 @@ $(document).ready(function () {
       $(this).closest('tr').remove();
     }
   }); //end of delete button JQuery
-  // $("#dataEnterForm").on('click', '#rating', function () {
+
+  $("#myTable").on('dblclick', '.dblClickToEditContent', function () {
+    $("#updateContent input ").show();
+    $("#myTable").on('keyup', function () {
+      $("#updateContent input ").val().show();
+      $("$initialContentValue").hide();
+    });
+  });
+  $("#myTable").on('dblclick', '.dblClickToEditCategory', function () {
+    $("#updateCategory input ").show();
+  });
+  $("#myTable").on('dblclick', '.dblClickToEditStartDate', function () {
+    $("#updateStartDate input ").show();
+  });
+  $("#myTable").on('dblclick', '.dblClickToEditDueDate', function () {
+    $("#updateDueDate input ").show();
+  });
+  $("#myTable").on('dblclick', '.dblClickToEditPriority', function () {
+    $("#updatePriority input ").show();
+  }); // $("#dataEnterForm").on('click', '#rating', function () {
   //     $("#rating i").css("color", "orange");
   // });
   //checkbox function, when ticked, the whole row will be line-through
@@ -155,16 +187,18 @@ $(document).ready(function () {
   $(document).on('click', 'input[type="checkbox"]', function () {
     if ($(this).prop("checked") == true) {
       $(this).closest("tr").css("text-decoration", "line-through");
+      $(this).closest("tr").css("background-color", "aqua");
     } else if ($(this).prop("checked") == false) {
       $(this).closest("tr").css("text-decoration", "none");
+      $(this).closest("tr").css("background-color", "rgba(255, 255, 255, 0)");
     }
   }); //end of checkbox JQuery
   //there is a star before every task, double click to highlight, and click to back to the background-color
 
-  $(document).on('click', '.important', function () {
+  $(document).on('click', '.highlight', function () {
     $(this).closest("tr").css("background-color", "rgba(255, 255, 255, 0)");
   });
-  $(document).on('dblclick', '.important', function () {
+  $(document).on('dblclick', '.highlight', function () {
     $(this).closest("tr").css("background-color", "beige");
   }); //search function, it will search and keep the whole row includes the result display on the screen, 
   // and won't do anything if there is no key words entered
@@ -174,6 +208,11 @@ $(document).ready(function () {
     $("#myTable tr").filter(function () {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
     });
+    event.preventDefault();
+  }); //double click the search input field, clear the input field
+
+  $("#searchMyInput").on("dblclick", function () {
+    $("#searchMyInput").val("");
     event.preventDefault();
   }); //end of search JQuery
 }); //display current date and time

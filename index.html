@@ -17,6 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href='https://fonts.googleapis.com/css?family=Galindo' rel='stylesheet'>
 </head>
 
 <body>
@@ -62,10 +63,14 @@
     <form id="dataEnterForm">
         <div class="dataEnter mr-sm-6">Task Content<input id="taskContentInput" type="text" placeholder="Task Content"></div>
         <div class="dataEnter mr-sm-6">Category<input id="taskCategoryInput" type="text" placeholder="Task Category"></div>
+        <br>
+        <br>
         <div class="dateSelect mr-sm-6">Start Date<input id="taskStartDateInput" type="date" name=""></div>
         <div class="dateSelect mr-sm-6">End Date<input id="taskDueDateInput" type="date" name=""></div>
+        <br>
+        <br>
         <div id="prioritySelect">Priority (1->5, max->min)<select id="taskPriorityInput" class="form col-sm-6" title="choose the priority">
-                <option selected>Choose...</option>
+                <option selected></option>
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -81,14 +86,15 @@
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
-                    <th>Task Content</th>
-                    <th>Category</th>
-                    <th>Start Date</th>
-                    <th>Due Date</th>
-                    <th>Priority</th>
-                    <th>Complete/No</th>
-                    <th>Update</th>
-                    <th>Delete</th>
+                    <th></th>
+                    <th mr-sm-6>Task Content</th>
+                    <th mr-sm-6>Category</th>
+                    <th mr-sm-6>Start Date</th>
+                    <th mr-sm-6>Due Date</th>
+                    <th mr-sm-6>Priority</th>
+                    <th mr-sm-6>Complete/No</th>
+                    <!-- <th mr-sm-6>Update</th> -->
+                    <th mr-sm-6>Delete</th>
                 </tr>
             </thead>
             <tbody id="myTable">
