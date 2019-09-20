@@ -22,43 +22,17 @@
 
 <body>
     <script src="script.js"></script>
-    <!-- navbar & search block -->
-    <!-- create a fixed-top position nav bar    -->
+    <!-- Search block -->
+    <!-- create a fixed-top position nav bar with search function   -->
     <nav class="navbar navbar-expand-sm fixed-top">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
-            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <!-- <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active"><a class="nav-link" href="#"><i class="fas fa-home"></i>Home <span
-                            class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-briefcase"></i>Work</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-book-open"></i></i>Study</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-user-friends"></i>Life</a></li>
-            </ul> -->
-            <!-- search -->
+        <!-- search -->
         <i class="fas fa-search"></i>
         <input id="searchMyInput" class="form-control mr-sm-2" type="search" placeholder="Enter some keywords to search..." aria-label="Search">
-        </div>
     </nav>
     <!-- main block includes the add new function and the todo list tables -->
     <main>
         <h1>My <span style="color: rgb(231, 139, 18)">To Do </span>List</h1>
-        <div id="linkweb"></div>
-        <!-- want to add some modals, but not ready yet -->
-        <!-- Button to Open the Modal -->
-        <!-- <button type="button" onclick="todoList()" class="btn btn-primary" data-toggle="modal"
-            data-target="#myModalOne">
-            Add new task
-        </button>
-        <button type="button" onclick="todoList()" class="btn btn-primary" data-toggle="modal"
-            data-target="#myModalTwo">
-            Calendar
-        </button> -->
-    
-    <!-- entery task details and add them into the todo list table -->
+        <div id="time"></div>
     <div class="container">
     <form id="dataEnterForm">
         <div class="dataEnter mr-sm-6">Task Content<input id="taskContentInput" type="text" placeholder="Task Content"></div>
@@ -69,7 +43,7 @@
         <div class="dateSelect mr-sm-6">End Date<input id="taskDueDateInput" type="date" name=""></div>
         <br>
         <br>
-        <div id="prioritySelect">Priority (1->5, max->min)<select id="taskPriorityInput" class="form col-sm-6" title="choose the priority">
+        <div id="prioritySelect">Priority (1->5, max->min)<select id="taskPriorityInput" class="form col-sm-6" title="Choose the priority">
                 <option selected></option>
                 <option>1</option>
                 <option>2</option>
@@ -77,9 +51,7 @@
                 <option>4</option>
                 <option>5</option>
             </select></div>
-        <!-- <div id="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div> -->
         <input class="btn btn-primary" type="submit" id="submitNewTask" value="Add New Task"> 
-        
     </form>
         <button class="update btn btn-primary">Update Task</button>
     <!-- the todo list table, only with th, and will append tr when key in some information-->
@@ -106,81 +78,7 @@
     </div>
     </div>  
     </main>
-
-    <!-- The Modal One -->
-    <div class="modal" id="myModalOne">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Not finish yet...</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <p>Task Details</p>
-                    <div>Task Content<input type="text" placeholder="Task Content"></div>
-                    <div>Task Category<input type="text" placeholder="Task Category"></div>
-                    <div>Start Date<input type="date" name=""></div>
-                    <div>End Date<input type="date" name=""></div>
-                    <div>Priority<select id="inputState" class="form-control col-sm-6">
-                            <option selected>Choose...</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select></div>
-                </div>
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
     </div>
-    <!-- The Modal Two -->
-    <div class="modal" id="myModalTwo">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Not finish yet...</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTGlHpYQDV6gg4RAsMzG2VVecg79GVWulm0DaBdQn1zX__0a0PM">
-                </div>
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- <input type="button" value="Hide text" onclick="document.getElementsById('form').style.visibility='hidden'">
-<input type="button" value="Show text" onclick="document.getElementsById('form').style.visibility='visible'"> -->
 </body>
 <br>
-<!-- footer -->
-<footer>
-    <!-- <br>
-    <section id="media">
-        <span style="font-size: 36px; color: black;">
-            <span title="facebook"><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></span>
-            <span title="twitter"><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></span>
-            <span title="youtube"><a class="youtube" href="https://www.youtube.com/watch?v=LhIJqQItaAg"
-                    target="_blank"><i class="fab fa-youtube"></i></a></span>
-            <span title="linkedin"><a class="linkedin" href="#"><i class="fab fa-linkedin"></i></a></span>
-            <span title="wechat"><a class="wechat" href="#"><i class="fab fa-weixin"></i></a></span>
-
-        </span>
-    </section>
-    <section class="copyright">
-        <h5>&copy;2019 General Assembly Project0 Chen</h5>
-    </section> -->
-</footer>
 </html>

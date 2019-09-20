@@ -118,6 +118,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"script.js":[function(require,module,exports) {
+//set a global varible to help locating the input id and td 
+var numberOfRows = 0;
+var numberOfEditingRowNumber = 0;
 $(document).ready(function () {
   //add new task 
   $("#dataEnterForm").submit(function (event) {
@@ -126,10 +129,9 @@ $(document).ready(function () {
     var initialCategoryValue = $("#taskCategoryInput").val();
     var initialStartDateValue = $("#taskStartDateInput").val();
     var initialDueDateValue = $("#taskDueDateInput").val();
-    var initialPrioirtyValue = $("#taskPriorityInput").val(); // create a new row everytime when add a new task, with basic details, a checkbox, a update button and a delete button
+    var initialPrioirtyValue = $("#taskPriorityInput").val(); // create a new row everytime when add a new task, with basic details, a checkbox, a edit button and a delete button
 
-    var $row = $("<tr>").append("\n            <td><i class=\"highlight far fa-star\"></i></td>\n            <td class=\"contentValue\"><div id=\"initialContentValue\">".concat(initialContentValue, "</div></td>\n            <td><div id=\"initialCategoryValue\">").concat(initialCategoryValue, "</div></td>\n            <td><div id=\"initialStartDateValue\">").concat(initialStartDateValue, "</div></td>\n            <td><div id=\"initialDueDateValue\">").concat(initialDueDateValue, "</div></td>\n            <td><div id=\"initialPrioirtyValue\">").concat(initialPrioirtyValue, "</div></td>\n            <td><input type=\"checkbox\"></button></td>\n            <td><button class=\"edit btn btn-primary\">Edit</button></td>\n            <td><button class=\"delete btn btn-primary\">Delete</button></td>\n        ")); // < td > <button class="update btn btn-primary">Update</button></td>
-    // the task content cannot be empty, or it will show a alert
+    var $row = $("<tr>").append("\n            <td><i class=\"highlight far fa-star\"></i></td>\n            <td class=\"contentValue\"><div id=\"initialContentValue".concat(numberOfRows, "\">").concat(initialContentValue, "</div></td>\n            <td><div id=\"initialCategoryValue").concat(numberOfRows, "\">").concat(initialCategoryValue, "</div></td>\n            <td><div id=\"initialStartDateValue").concat(numberOfRows, "\">").concat(initialStartDateValue, "</div></td>\n            <td><div id=\"initialDueDateValue").concat(numberOfRows, "\">").concat(initialDueDateValue, "</div></td>\n            <td><div id=\"initialPrioirtyValue").concat(numberOfRows, "\">").concat(initialPrioirtyValue, "</div></td>\n            <td><input type=\"checkbox\"></button></td>\n            <td><button id=\"").concat(numberOfRows++, "\" class=\"edit btn btn-primary\">Edit</button></td>\n            <td><button class=\"delete btn btn-primary\">Delete</button></td>\n        ")); // the task content cannot be empty, or it will show a alert
 
     if (initialContentValue !== '') {
       $('#myTable').append($row);
@@ -154,31 +156,25 @@ $(document).ready(function () {
       $(this).closest('tr').remove();
     }
   }); //end of delete button JQuery
+  // the edit function, let the input field to collect the td value in different rows
 
-  $(document).on('click', '.highlight', function () {
-    console.log('INDEX CLICKED' + $(this).index());
-    $(this).closest("tr").css("background-color", "rgba(255, 255, 255, 0)");
-  });
-  $(document).on('dblclick', '.highlight', function () {
-    console.log('clickINDEX CLICKED' + $(this).index());
-    $(this).closest("tr").css("background-color", "beige");
-  });
-  $(document).on('click', '.edit', function () {
-    // $(this).closest("tr").css("background-color", "beige");
-    $("#taskContentInput").val($("#initialContentValue").eq($(this).index() - 1).text());
-    $("#taskCategoryInput").val($("#initialCategoryValue").eq($(this).index() - 1).text());
-    $("#taskStartDateInput").val($("#initialStartDateValue").eq($(this).index() - 1).text());
-    $("#taskDueDateInput").val($("#initialDueDateValue").eq($(this).index() - 1).text());
-    $("#taskPriorityInput").val($("#initialPrioirtyValue").eq($(this).index() - 1).text());
-  });
+  $(document).on('click', '.edit', function (event) {
+    // convert the event.target.id from a string to a num
+    var i = parseInt(event.target.id) + 1;
+    numberOfEditingRowNumber = i;
+    $("#taskContentInput").val($("#initialContentValue" + (i - 1)).text());
+    $("#taskCategoryInput").val($("#initialCategoryValue" + (i - 1)).text());
+    $("#taskStartDateInput").val($("#initialStartDateValue" + (i - 1)).text());
+    $("#taskDueDateInput").val($("#initialDueDateValue" + (i - 1)).text());
+    $("#taskPriorityInput").val($("#initialPrioirtyValue" + (i - 1)).text());
+  }); //the update function, put the input field value back into the table, and clean up the input field after updating
+
   $(document).on('click', '.update', function () {
-    //index
-    console.log('update INDEX CLICKED' + $('tr').children('td').index());
-    $("#initialContentValue:eq()").text($("#taskContentInput").eq($(this).index() - 1).val());
-    $("#initialCategoryValue:eq()").text($("#taskCategoryInput").eq($(this).index() - 1).val());
-    $("#initialStartDateValue:eq()").text($("#taskStartDateInput").eq($(this).index() - 1).val());
-    $("#initialDueDateValue:eq()").text($("#taskDueDateInput").eq($(this).index() - 1).val());
-    $("#initialPrioirtyValue:eq()").text($("#taskPriorityInput").eq($(this).index() - 1).val());
+    $("#initialContentValue" + (numberOfEditingRowNumber - 1)).text($("#taskContentInput").val());
+    $("#initialCategoryValue" + (numberOfEditingRowNumber - 1)).text($("#taskCategoryInput").val());
+    $("#initialStartDateValue" + (numberOfEditingRowNumber - 1)).text($("#taskStartDateInput").val());
+    $("#initialDueDateValue" + (numberOfEditingRowNumber - 1)).text($("#taskDueDateInput").val());
+    $("#initialPrioirtyValue" + (numberOfEditingRowNumber - 1)).text($("#taskPriorityInput").val());
     $("#taskContentInput").val("");
     $("#taskCategoryInput").val("");
     $("#taskStartDateInput").val("");
@@ -196,13 +192,13 @@ $(document).ready(function () {
     }
   }); //end of checkbox JQuery
   //there is a star before every task, double click to highlight, and click to back to the background-color
-  // $(document).on('click', '.highlight', function () {        
-  //   $(this).closest("tr").css("background-color", "rgba(255, 255, 255, 0)");   
-  // });
-  // $(document).on('dblclick', '.highlight', function () {
-  //   $(this).closest("tr").css("background-color", "beige");
-  // });
-  //search function, it will search and keep the whole row includes the result display on the screen, 
+
+  $(document).on('click', '.highlight', function () {
+    $(this).closest("tr").css("background-color", "rgba(255, 255, 255, 0)");
+  });
+  $(document).on('dblclick', '.highlight', function () {
+    $(this).closest("tr").css("background-color", "beige");
+  }); //search function, it will search and keep the whole row includes the result display on the screen, 
   // and won't do anything if there is no key words entered
 
   $("#searchMyInput").on("keyup", function () {
@@ -219,7 +215,7 @@ $(document).ready(function () {
   }); //end of search JQuery
 }); //display current date and time
 
-setInterval("linkweb.innerHTML=new Date().toLocaleString()+''+''.charAt(new Date().getDay());", 1000);
+setInterval("time.innerHTML=new Date()", 1000);
 },{}],"../../../../../../usr/local/lib/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -248,7 +244,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54442" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49368" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
