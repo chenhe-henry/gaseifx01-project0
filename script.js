@@ -11,13 +11,12 @@ $(document).ready(function () {
     // create a new row everytime when add a new task, with basic details, a checkbox, a update button and a delete button
     let $row = $("<tr>").append(`
             <td><i class="highlight far fa-star"></i></td>
-            <td><div id="initialContentValue" class="dblClickToEditContent">${initialContentValue}</div><div id="updateContent"><input type="text"></div></td>
+            <td><div id="initialContentValue" class="dblClickToEditContent">${initialContentValue}</div><div id="updateContent"><button class="updateButton btn btn-primary">Update</button><input type="text"></div></td>
             <td><div id="initialCategoryValue" class="dblClickToEditCategory">${initialCategoryValue}</div><div id="updateCategory"><input type="text"></div></td>
             <td><div id="initialStartDateValue" class="dblClickToEditStartDate">${initialStartDateValue}</div><div id="updateStartDate"><input type="text"></div></td>
             <td><div id="initialDueDateValue" class="dblClickToEditDueDate">${initialDueDateValue}</div><div id="updateDueDate"><input type="text"></div></td>
             <td><div id="initialPrioirtyValue" class="dblClickToEditPriority">${initialPrioirtyValue}</div><div id="updatePriority"><input type="text"></div></td>
             <td><input type="checkbox"></button></td>
-            
             <td><button class="delete btn btn-primary">Delete</button></td>
         `)
       // < td > <button class="update btn btn-primary">Update</button></td>
@@ -39,6 +38,7 @@ $(document).ready(function () {
     $("#taskPriorityInput").val("");
     //hide the update input field
     $("#updateContent input ").hide();
+    $(".updateButton").hide();
     $("#updateCategory input ").hide();
     $("#updateStartDate input ").hide();
     $("#updateDueDate input ").hide();
@@ -54,28 +54,36 @@ $(document).ready(function () {
     }
   });
   //end of delete button JQuery
-  $("#myTable").on('dblclick', '.dblClickToEditContent', function () {
-    $("#updateContent input ").show();
-    $("#myTable").on('keyup', function() {
-      
-      $("#updateContent input ").val().show();
-      $("$initialContentValue").hide();
+  $("#myTable").on('dblclick', 'tr', function () {
+    console.log('INDEX CLICKED' + $(this).index());
+    $(".updateButton").eq($(this).index() - 1).show();
+    $("#updateContent input ").eq($(this).index() - 1).show();
+  });
 
-    });
+  
+  $("#myTable").on('click', '.updateButton', function () {
+    //index
+    console.log('update INDEX CLICKED' + $(this).index());
+    $(".updateButton").hide();
+    $("#updateContent input").eq($('tr').index() - 1).hide();
+    var newValue = $("#updateContent input").eq($('tr').index() - 1).val();
+    $("#initialContentValue").eq($('tr').index() - 1).text(newValue);
   });
-  $("#myTable").on('dblclick', '.dblClickToEditCategory', function () {
-    $("#updateCategory input ").show();
-  });
-  $("#myTable").on('dblclick', '.dblClickToEditStartDate', function () {
-    $("#updateStartDate input ").show();
-  });
-  $("#myTable").on('dblclick', '.dblClickToEditDueDate', function () {
-    $("#updateDueDate input ").show();
+  // $("#myTable").on('dblclick', 'tr', function () {
+  //   $(".updateButton").eq($(this).index() - 1).show();
+  //   $("#updateCategory input ").eq($(this).index() - 1).show();
+  // });
+  // $("#myTable").on('dblclick', 'tr', function () {
+  //   $(".updateButton").eq($(this).index() - 1).show();
+  //   $("#updateStartDate input ").eq($(this).index() - 1).show();
+  // });
+  // $("#myTable").on('dblclick', '.dblClickToEditDueDate', function () {  
+  //   $("#updateDueDate input ").show();
 
-  });
-  $("#myTable").on('dblclick', '.dblClickToEditPriority', function () {
-    $("#updatePriority input ").show();
-  });
+  // });
+  // $("#myTable").on('dblclick', '.dblClickToEditPriority', function () {
+  //   $("#updatePriority input ").show();
+  // });
   
   // $("#dataEnterForm").on('click', '#rating', function () {
   //     $("#rating i").css("color", "orange");

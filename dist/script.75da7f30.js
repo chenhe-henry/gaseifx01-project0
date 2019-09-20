@@ -128,7 +128,7 @@ $(document).ready(function () {
     var initialDueDateValue = $("#taskDueDateInput").val();
     var initialPrioirtyValue = $("#taskPriorityInput").val(); // create a new row everytime when add a new task, with basic details, a checkbox, a update button and a delete button
 
-    var $row = $("<tr>").append("\n            <td><i class=\"highlight far fa-star\"></i></td>\n            <td><div id=\"initialContentValue\" class=\"dblClickToEditContent\">".concat(initialContentValue, "</div><div id=\"updateContent\"><input type=\"text\"></div></td>\n            <td><div id=\"initialCategoryValue\" class=\"dblClickToEditCategory\">").concat(initialCategoryValue, "</div><div id=\"updateCategory\"><input type=\"text\"></div></td>\n            <td><div id=\"initialStartDateValue\" class=\"dblClickToEditStartDate\">").concat(initialStartDateValue, "</div><div id=\"updateStartDate\"><input type=\"text\"></div></td>\n            <td><div id=\"initialDueDateValue\" class=\"dblClickToEditDueDate\">").concat(initialDueDateValue, "</div><div id=\"updateDueDate\"><input type=\"text\"></div></td>\n            <td><div id=\"initialPrioirtyValue\" class=\"dblClickToEditPriority\">").concat(initialPrioirtyValue, "</div><div id=\"updatePriority\"><input type=\"text\"></div></td>\n            <td><input type=\"checkbox\"></button></td>\n            \n            <td><button class=\"delete btn btn-primary\">Delete</button></td>\n        ")); // < td > <button class="update btn btn-primary">Update</button></td>
+    var $row = $("<tr>").append("\n            <td><i class=\"highlight far fa-star\"></i></td>\n            <td><div id=\"initialContentValue\" class=\"dblClickToEditContent\">".concat(initialContentValue, "</div><div id=\"updateContent\"><button class=\"updateButton btn btn-primary\">Update</button><input type=\"text\"></div></td>\n            <td><div id=\"initialCategoryValue\" class=\"dblClickToEditCategory\">").concat(initialCategoryValue, "</div><div id=\"updateCategory\"><input type=\"text\"></div></td>\n            <td><div id=\"initialStartDateValue\" class=\"dblClickToEditStartDate\">").concat(initialStartDateValue, "</div><div id=\"updateStartDate\"><input type=\"text\"></div></td>\n            <td><div id=\"initialDueDateValue\" class=\"dblClickToEditDueDate\">").concat(initialDueDateValue, "</div><div id=\"updateDueDate\"><input type=\"text\"></div></td>\n            <td><div id=\"initialPrioirtyValue\" class=\"dblClickToEditPriority\">").concat(initialPrioirtyValue, "</div><div id=\"updatePriority\"><input type=\"text\"></div></td>\n            <td><input type=\"checkbox\"></button></td>\n            <td><button class=\"delete btn btn-primary\">Delete</button></td>\n        ")); // < td > <button class="update btn btn-primary">Update</button></td>
     // the task content cannot be empty, or it will show a alert
 
     if (initialContentValue !== '') {
@@ -146,6 +146,7 @@ $(document).ready(function () {
     $("#taskPriorityInput").val(""); //hide the update input field
 
     $("#updateContent input ").hide();
+    $(".updateButton").hide();
     $("#updateCategory input ").hide();
     $("#updateStartDate input ").hide();
     $("#updateDueDate input ").hide();
@@ -161,25 +162,33 @@ $(document).ready(function () {
     }
   }); //end of delete button JQuery
 
-  $("#myTable").on('dblclick', '.dblClickToEditContent', function () {
-    $("#updateContent input ").show();
-    $("#myTable").on('keyup', function () {
-      $("#updateContent input ").val().show();
-      $("$initialContentValue").hide();
-    });
+  $("#myTable").on('dblclick', 'tr', function () {
+    console.log('INDEX CLICKED' + $(this).index());
+    $(".updateButton").eq($(this).index() - 1).show();
+    $("#updateContent input ").eq($(this).index() - 1).show();
   });
-  $("#myTable").on('dblclick', '.dblClickToEditCategory', function () {
-    $("#updateCategory input ").show();
-  });
-  $("#myTable").on('dblclick', '.dblClickToEditStartDate', function () {
-    $("#updateStartDate input ").show();
-  });
-  $("#myTable").on('dblclick', '.dblClickToEditDueDate', function () {
-    $("#updateDueDate input ").show();
-  });
-  $("#myTable").on('dblclick', '.dblClickToEditPriority', function () {
-    $("#updatePriority input ").show();
-  }); // $("#dataEnterForm").on('click', '#rating', function () {
+  $("#myTable").on('click', '.updateButton', function () {
+    //index
+    console.log('update INDEX CLICKED' + $(this).index());
+    $(".updateButton").hide();
+    $("#updateContent input").eq($('tr').index() - 1).hide();
+    var newValue = $("#updateContent input").eq($('tr').index() - 1).val();
+    $("#initialContentValue").eq($('tr').index() - 1).text(newValue);
+  }); // $("#myTable").on('dblclick', 'tr', function () {
+  //   $(".updateButton").eq($(this).index() - 1).show();
+  //   $("#updateCategory input ").eq($(this).index() - 1).show();
+  // });
+  // $("#myTable").on('dblclick', 'tr', function () {
+  //   $(".updateButton").eq($(this).index() - 1).show();
+  //   $("#updateStartDate input ").eq($(this).index() - 1).show();
+  // });
+  // $("#myTable").on('dblclick', '.dblClickToEditDueDate', function () {  
+  //   $("#updateDueDate input ").show();
+  // });
+  // $("#myTable").on('dblclick', '.dblClickToEditPriority', function () {
+  //   $("#updatePriority input ").show();
+  // });
+  // $("#dataEnterForm").on('click', '#rating', function () {
   //     $("#rating i").css("color", "orange");
   // });
   //checkbox function, when ticked, the whole row will be line-through
@@ -246,7 +255,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63078" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54442" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
