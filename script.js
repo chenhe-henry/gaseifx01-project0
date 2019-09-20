@@ -1,4 +1,4 @@
-//set a global varible to help locating the input id and td 
+//set a global variable to help locating the input id and td 
 var numberOfRows = 0;
 var numberOfEditingRowNumber = 0;
 

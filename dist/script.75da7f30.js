@@ -118,7 +118,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"script.js":[function(require,module,exports) {
-//set a global varible to help locating the input id and td 
+//set a global variable to help locating the input id and td 
 var numberOfRows = 0;
 var numberOfEditingRowNumber = 0;
 $(document).ready(function () {
