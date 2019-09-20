@@ -11,12 +11,13 @@ $(document).ready(function () {
     // create a new row everytime when add a new task, with basic details, a checkbox, a update button and a delete button
     let $row = $("<tr>").append(`
             <td><i class="highlight far fa-star"></i></td>
-            <td><div id="initialContentValue" class="dblClickToEditContent">${initialContentValue}</div><div id="updateContent"><button class="updateButton btn btn-primary">Update</button><input type="text"></div></td>
-            <td><div id="initialCategoryValue" class="dblClickToEditCategory">${initialCategoryValue}</div><div id="updateCategory"><input type="text"></div></td>
-            <td><div id="initialStartDateValue" class="dblClickToEditStartDate">${initialStartDateValue}</div><div id="updateStartDate"><input type="text"></div></td>
-            <td><div id="initialDueDateValue" class="dblClickToEditDueDate">${initialDueDateValue}</div><div id="updateDueDate"><input type="text"></div></td>
-            <td><div id="initialPrioirtyValue" class="dblClickToEditPriority">${initialPrioirtyValue}</div><div id="updatePriority"><input type="text"></div></td>
+            <td class="contentValue"><div id="initialContentValue">${initialContentValue}</div></td>
+            <td><div id="initialCategoryValue">${initialCategoryValue}</div></td>
+            <td><div id="initialStartDateValue">${initialStartDateValue}</div></td>
+            <td><div id="initialDueDateValue">${initialDueDateValue}</div></td>
+            <td><div id="initialPrioirtyValue">${initialPrioirtyValue}</div></td>
             <td><input type="checkbox"></button></td>
+            <td><button class="edit btn btn-primary">Edit</button></td>
             <td><button class="delete btn btn-primary">Delete</button></td>
         `)
       // < td > <button class="update btn btn-primary">Update</button></td>
@@ -36,13 +37,6 @@ $(document).ready(function () {
     $("#taskStartDateInput").val("");
     $("#taskDueDateInput").val("");
     $("#taskPriorityInput").val("");
-    //hide the update input field
-    $("#updateContent input ").hide();
-    $(".updateButton").hide();
-    $("#updateCategory input ").hide();
-    $("#updateStartDate input ").hide();
-    $("#updateDueDate input ").hide();
-    $("#updatePriority input ").hide();
   });
   //end of #dataEnterForm JQuery
   
@@ -54,40 +48,37 @@ $(document).ready(function () {
     }
   });
   //end of delete button JQuery
-  $("#myTable").on('dblclick', 'tr', function () {
+  $(document).on('click', '.highlight', function () {
     console.log('INDEX CLICKED' + $(this).index());
-    $(".updateButton").eq($(this).index() - 1).show();
-    $("#updateContent input ").eq($(this).index() - 1).show();
+    $(this).closest("tr").css("background-color", "rgba(255, 255, 255, 0)");
   });
-
-  
-  $("#myTable").on('click', '.updateButton', function () {
+  $(document).on('dblclick', '.highlight', function () {
+    console.log('clickINDEX CLICKED' + $(this).index());
+    $(this).closest("tr").css("background-color", "beige");
+  });
+  $(document).on('click', '.edit', function () {
+    // $(this).closest("tr").css("background-color", "beige");
+    $("#taskContentInput").val($("#initialContentValue").eq($(this).index() - 1).text());
+    $("#taskCategoryInput").val($("#initialCategoryValue").eq($(this).index() - 1).text());
+    $("#taskStartDateInput").val($("#initialStartDateValue").eq($(this).index() - 1).text());
+    $("#taskDueDateInput").val($("#initialDueDateValue").eq($(this).index() - 1).text());
+    $("#taskPriorityInput").val($("#initialPrioirtyValue").eq($(this).index() - 1).text());
+  });
+  $(document).on('click', '.update', function () {
     //index
-    console.log('update INDEX CLICKED' + $(this).index());
-    $(".updateButton").hide();
-    $("#updateContent input").eq($('tr').index() - 1).hide();
-    var newValue = $("#updateContent input").eq($('tr').index() - 1).val();
-    $("#initialContentValue").eq($('tr').index() - 1).text(newValue);
+    console.log('update INDEX CLICKED' + $('tr').children('td').index());
+   
+    $("#initialContentValue:eq()").text($("#taskContentInput").eq($(this).index() - 1).val());
+    $("#initialCategoryValue:eq()").text($("#taskCategoryInput").eq($(this).index() - 1).val());
+    $("#initialStartDateValue:eq()").text($("#taskStartDateInput").eq($(this).index() - 1).val());
+    $("#initialDueDateValue:eq()").text($("#taskDueDateInput").eq($(this).index() - 1).val());
+    $("#initialPrioirtyValue:eq()").text($("#taskPriorityInput").eq($(this).index() - 1).val());
+    $("#taskContentInput").val("");
+    $("#taskCategoryInput").val("");
+    $("#taskStartDateInput").val("");
+    $("#taskDueDateInput").val("");
+    $("#taskPriorityInput").val("");
   });
-  // $("#myTable").on('dblclick', 'tr', function () {
-  //   $(".updateButton").eq($(this).index() - 1).show();
-  //   $("#updateCategory input ").eq($(this).index() - 1).show();
-  // });
-  // $("#myTable").on('dblclick', 'tr', function () {
-  //   $(".updateButton").eq($(this).index() - 1).show();
-  //   $("#updateStartDate input ").eq($(this).index() - 1).show();
-  // });
-  // $("#myTable").on('dblclick', '.dblClickToEditDueDate', function () {  
-  //   $("#updateDueDate input ").show();
-
-  // });
-  // $("#myTable").on('dblclick', '.dblClickToEditPriority', function () {
-  //   $("#updatePriority input ").show();
-  // });
-  
-  // $("#dataEnterForm").on('click', '#rating', function () {
-  //     $("#rating i").css("color", "orange");
-  // });
 
   //checkbox function, when ticked, the whole row will be line-through
   $(document).on('click', 'input[type="checkbox"]', function () {
@@ -102,12 +93,12 @@ $(document).ready(function () {
   //end of checkbox JQuery
 
   //there is a star before every task, double click to highlight, and click to back to the background-color
-  $(document).on('click', '.highlight', function () {        
-    $(this).closest("tr").css("background-color", "rgba(255, 255, 255, 0)");   
-  });
-  $(document).on('dblclick', '.highlight', function () {
-    $(this).closest("tr").css("background-color", "beige");
-  });
+  // $(document).on('click', '.highlight', function () {        
+  //   $(this).closest("tr").css("background-color", "rgba(255, 255, 255, 0)");   
+  // });
+  // $(document).on('dblclick', '.highlight', function () {
+  //   $(this).closest("tr").css("background-color", "beige");
+  // });
 
   //search function, it will search and keep the whole row includes the result display on the screen, 
   // and won't do anything if there is no key words entered
