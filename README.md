@@ -5,6 +5,7 @@ My To Do List
 ## Live game link
 https://chen-gastudent.github.io/gaseifx01-project0/
 ## Description
+A simple "To do list", which allows you to add, edit, delete, highlight, check and search todos.
 ## Screenshots
 ## Features
 ### Add new task
@@ -26,5 +27,13 @@ You can key in some keywords to search when you have mulitple tasks, it will kee
 
 The keywords will keep in the input field, until you double click the input field to clear that.
 ## Tech used
+* HTML
+* CSS
+* JQuery
 ## V2 wishlist
+* All the data can be stored.
+* Can sort the tasks by any selected attribute, e.g. priority, category or due date. 
+* All the completed tasks can be automatically listed in the bottom of the todo list.
+* Compare between due date and the date today, should have a overdue alarm or overdue warning function.
 ## Any known bugs
+* When update the task, after you edit the task input and click the update button, the correspending todo will be updated, and the input field will be reset to empty as designed. But if you click update button again at this time, the empty values will update to the todo.
