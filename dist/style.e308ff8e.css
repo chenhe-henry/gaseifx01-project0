@@ -45,7 +45,33 @@ form {
     border: 5px double cadetblue;
     border-radius: 20px;
 }
-
+@media only screen and (max-width: 600px) {
+body {
+  min-width: 300px;
+}
+nav {
+  text-align: center;
+  background-color: rgb(72, 15, 226);
+  color: white;
+  margin: auto;
+  height: 10%;
+}
+input[type=search] {
+  width: 90%;
+  font-size: 18px;
+}
+input[type=search]:focus {
+  width: 90%;
+}
+main {
+    margin-top: 18%;
+}
+.dateSelect, .dataEnter {
+  margin: auto;
+    display: block;
+    padding: 5px;
+}
+}
 
 
 /*# sourceMappingURL=/style.e308ff8e.css.map */
