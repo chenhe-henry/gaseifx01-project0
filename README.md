@@ -37,3 +37,4 @@ The keywords will keep in the input field, until you double click the input fiel
 * Compare between due date and the date today, should have a overdue alarm or overdue warning function.
 ## Any known bugs
 * When update the task, after you edit the task input and click the update button, the correspending todo will be updated, and the input field will be reset to empty as designed. But if you click update button again at this time, the empty values will update to the todo.
+* After tick and untick the check box, the current tr background will fixed, and not hover.
