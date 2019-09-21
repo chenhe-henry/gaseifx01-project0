@@ -66,11 +66,6 @@ input[type=search]:focus {
 main {
     margin-top: 18%;
 }
-.dateSelect, .dataEnter {
-  margin: auto;
-    display: block;
-    padding: 5px;
-}
 }
 
 
