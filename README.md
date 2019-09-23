@@ -3,7 +3,7 @@
 ## Project Heading
 My To Do List
 ## Live game link
-https://chen-gastudent.github.io/gaseifx01-project0/
+https://chenhe-henry-syd.github.io/gaseifx01-project0/
 ## Description
 A simple "To do list", which allows you to add, edit, delete, highlight, check and search todos.
 ## Screenshots
