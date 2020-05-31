@@ -51,26 +51,57 @@ form {
   border: 5px double cadetblue;
   border-radius: 20px;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1024px) {
   body {
     min-width: 300px;
+  }
+  .searchResult {
+    font-size: 15px;
+    margin: 5% 20px -10% 0px;
   }
   nav {
     text-align: center;
     background-color: rgb(72, 15, 226);
     color: white;
     margin: auto;
-    height: 10%;
+    height: 8.3%;
   }
+
   input[type="search"] {
-    width: 90%;
-    font-size: 18px;
+    font-size: 15px;
   }
-  input[type="search"]:focus {
-    width: 90%;
-  }
+
   main {
-    margin-top: 18%;
+    margin-top: 14%;
+    margin-left: 6vw;
+    margin-right: 6vw;
+  }
+}
+@media only screen and (max-width: 768px) {
+  body {
+    min-width: 300px;
+  }
+  .searchResult {
+    font-size: 15px;
+    margin: 5% 20px -10% 0px;
+  }
+  nav {
+    text-align: center;
+    background-color: rgb(72, 15, 226);
+    color: white;
+    margin: auto;
+    height: 8.3%;
+  }
+
+  input[type="search"] {
+    font-size: 15px;
+  }
+
+  main {
+    margin-top: 14%;
+    margin-left: 6vw;
+    margin-right: 6vw;
+    font-size: 0.8rem;
   }
 }
 /*  */
